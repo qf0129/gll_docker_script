@@ -1,0 +1,21 @@
+
+From ubuntu:16.04
+
+MAINTAINER docker_user  qf0129@qq.com
+
+RUN sed -i 's/archive.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list \
+    && sed -i 's/security.ubuntu/mirrors.aliyun/g' /etc/apt/sources.list
+
+RUN apt update && apt-get install -y gcc git libffi-dev libssl-dev libmysqlclient-dev \
+    libjpeg-dev libfreetype6-dev zlib1g-dev libpng12-dev python python-dev python-pip \
+    && apt-get clean && apt-get autoclean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+
+
+RUN mkdir -p /gululu  
+WORKDIR /gululu
+
+ADD requirements.txt /gululu/
+
+RUN pip install -r requirements.txt --trusted-host mirrors.aliyun.com  -i http://mirrors.aliyun.com/pypi/simple
+
+CMD /bin/bash

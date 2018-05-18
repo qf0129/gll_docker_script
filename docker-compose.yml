@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+    redis:
+        image: redis
+        container_name: redis1
+    rabbitmq:
+        image: rabbitmq
+        container_name: rabbitmq1
+    mysql_rw:
+        image: mysql:5.7
+        container_name: mysql_rw_1
+        environment:
+         - MYSQL_ROOT_PASSWORD=gululu
+         - MYSQL_DATABASE=gululu
+    mysql_ro:
+        image: mysql:5.7
+        container_name: mysql_ro_1
+        environment:
+         - MYSQL_ROOT_PASSWORD=gululu
+         - MYSQL_DATABASE=gululu
+
+    gululu:
+        container_name: gululu_server_1
+        volumes:
+            - /home/qf/work/gululu:/gululu/
+        build:
+            context: .
+            dockerfile: dockerfile_flask
+    # vault1:
