@@ -113,6 +113,6 @@ visitor==0.1.2
 watchdog==0.8.3
 wcwidth==0.1.7
 Werkzeug==0.12.2
-wheel==0.24.0
+wheel==0.38.1
 wsgiref==0.1.2
 WTForms==2.1
